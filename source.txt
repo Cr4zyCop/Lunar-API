@@ -1,0 +1,605 @@
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Net.Http;
+using System.Net.WebSockets;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace LunarAPI
+{
+	// Token: 0x0200001B RID: 27
+	public class Injector
+	{
+		// Token: 0x06000054 RID: 84 RVA: 0x00003AB4 File Offset: 0x00001CB4
+		[DebuggerStepThrough]
+		private Task \u0006()
+		{
+			Injector.\u0002 u = new Injector.\u0002();
+			u.\u0002 = AsyncTaskMethodBuilder.Create();
+			u.\u0003 = this;
+			u.\u0006 = -1;
+			u.\u0002.Start<Injector.\u0002>(ref u);
+			return u.\u0002.Task;
+		}
+
+		// Token: 0x06000055 RID: 85 RVA: 0x00003AF8 File Offset: 0x00001CF8
+		[DebuggerStepThrough]
+		private Task \u0006(string \u0006)
+		{
+			Injector.\u0003 u = new Injector.\u0003();
+			u.\u0002 = AsyncTaskMethodBuilder.Create();
+			u.\u0008 = this;
+			u.\u0003 = \u0006;
+			u.\u0006 = -1;
+			u.\u0002.Start<Injector.\u0003>(ref u);
+			return u.\u0002.Task;
+		}
+
+		// Token: 0x06000056 RID: 86 RVA: 0x00003B44 File Offset: 0x00001D44
+		[DebuggerStepThrough]
+		public Task Inject()
+		{
+			Injector.\u000E u000E = new Injector.\u000E();
+			u000E.\u0002 = AsyncTaskMethodBuilder.Create();
+			u000E.\u0003 = this;
+			u000E.\u0006 = -1;
+			u000E.\u0002.Start<Injector.\u000E>(ref u000E);
+			return u000E.\u0002.Task;
+		}
+
+		// Token: 0x06000057 RID: 87 RVA: 0x00003B88 File Offset: 0x00001D88
+		[DebuggerStepThrough]
+		public Task ExecuteScript(string script)
+		{
+			Injector.\u0008 u = new Injector.\u0008();
+			u.\u0002 = AsyncTaskMethodBuilder.Create();
+			u.\u0008 = this;
+			u.\u0003 = script;
+			u.\u0006 = -1;
+			u.\u0002.Start<Injector.\u0008>(ref u);
+			return u.\u0002.Task;
+		}
+
+		// Token: 0x06000058 RID: 88 RVA: 0x00003BD4 File Offset: 0x00001DD4
+		[DebuggerStepThrough]
+		public static Task SendScript(string script)
+		{
+			Injector.\u000F u000F = new Injector.\u000F();
+			u000F.\u0002 = AsyncTaskMethodBuilder.Create();
+			u000F.\u0003 = script;
+			u000F.\u0006 = -1;
+			u000F.\u0002.Start<Injector.\u000F>(ref u000F);
+			return u000F.\u0002.Task;
+		}
+
+		// Token: 0x06000059 RID: 89 RVA: 0x00003C18 File Offset: 0x00001E18
+		private Task \u0002()
+		{
+			return this.\u0006();
+		}
+
+		// Token: 0x0200001C RID: 28
+		private sealed class \u0002 : IAsyncStateMachine
+		{
+			// Token: 0x0600005B RID: 91 RVA: 0x00003C28 File Offset: 0x00001E28
+			void IAsyncStateMachine.MoveNext()
+			{
+				int u = this.\u0006;
+				try
+				{
+					if (u != 0)
+					{
+						goto IL_118;
+					}
+					TaskAwaiter u0002_u = this.\u0002\u2009;
+					this.\u0002\u2009 = default(TaskAwaiter);
+					this.\u0006 = -1;
+					IL_10A:
+					u0002_u.GetResult();
+					this.\u0008 = null;
+					IL_118:
+					this.\u0008 = Process.GetProcessesByName(\u0006\u0019.\u0006(-2046000694));
+					bool flag = this.\u0008.Length == 0;
+					if (flag)
+					{
+						this.\u000E = Process.GetProcessesByName(\u0006\u0019.\u0006(-2046000667));
+						this.\u000F = this.\u000E;
+						this.\u0005 = 0;
+						while (this.\u0005 < this.\u000F.Length)
+						{
+							this.\u0006\u2009 = this.\u000F[this.\u0005];
+							this.\u0006\u2009.Kill();
+							this.\u0006\u2009 = null;
+							this.\u0005++;
+						}
+						this.\u000F = null;
+						this.\u000E = null;
+					}
+					u0002_u = Task.Delay(100).GetAwaiter();
+					if (u0002_u.IsCompleted)
+					{
+						goto IL_10A;
+					}
+					this.\u0006 = 0;
+					this.\u0002\u2009 = u0002_u;
+					Injector.\u0002 u2 = this;
+					this.\u0002.AwaitUnsafeOnCompleted<TaskAwaiter, Injector.\u0002>(ref u0002_u, ref u2);
+				}
+				catch (Exception exception)
+				{
+					this.\u0006 = -2;
+					this.\u0002.SetException(exception);
+				}
+			}
+
+			// Token: 0x0600005C RID: 92 RVA: 0x00003D88 File Offset: 0x00001F88
+			[DebuggerHidden]
+			void IAsyncStateMachine.SetStateMachine(IAsyncStateMachine \u0006)
+			{
+			}
+
+			// Token: 0x04000024 RID: 36
+			public int \u0006;
+
+			// Token: 0x04000025 RID: 37
+			public AsyncTaskMethodBuilder \u0002;
+
+			// Token: 0x04000026 RID: 38
+			public Injector \u0003;
+
+			// Token: 0x04000027 RID: 39
+			private Process[] \u0008;
+
+			// Token: 0x04000028 RID: 40
+			private Process[] \u000E;
+
+			// Token: 0x04000029 RID: 41
+			private Process[] \u000F;
+
+			// Token: 0x0400002A RID: 42
+			private int \u0005;
+
+			// Token: 0x0400002B RID: 43
+			private Process \u0006\u2009;
+
+			// Token: 0x0400002C RID: 44
+			private TaskAwaiter \u0002\u2009;
+		}
+
+		// Token: 0x0200001D RID: 29
+		private sealed class \u0003 : IAsyncStateMachine
+		{
+			// Token: 0x0600005E RID: 94 RVA: 0x00003D94 File Offset: 0x00001F94
+			void IAsyncStateMachine.MoveNext()
+			{
+				int num = this.\u0006;
+				try
+				{
+					if (num > 2)
+					{
+						this.\u000E = Path.Combine(Path.GetTempPath(), \u0006\u0019.\u0006(-2046000664));
+						bool flag = File.Exists(this.\u000E);
+						if (flag)
+						{
+							File.Delete(this.\u000E);
+						}
+						this.\u000F = new HttpClient();
+					}
+					try
+					{
+						TaskAwaiter<HttpResponseMessage> u0008_u;
+						TaskAwaiter u000E_u;
+						switch (num)
+						{
+						case 0:
+							u0008_u = this.\u0008\u2009;
+							this.\u0008\u2009 = default(TaskAwaiter<HttpResponseMessage>);
+							num = (this.\u0006 = -1);
+							break;
+						case 1:
+							goto IL_11B;
+						case 2:
+							u000E_u = this.\u000E\u2009;
+							this.\u000E\u2009 = default(TaskAwaiter);
+							num = (this.\u0006 = -1);
+							goto IL_277;
+						default:
+							u0008_u = this.\u000F.GetAsync(this.\u0003).GetAwaiter();
+							if (!u0008_u.IsCompleted)
+							{
+								num = (this.\u0006 = 0);
+								this.\u0008\u2009 = u0008_u;
+								Injector.\u0003 u = this;
+								this.\u0002.AwaitUnsafeOnCompleted<TaskAwaiter<HttpResponseMessage>, Injector.\u0003>(ref u0008_u, ref u);
+								return;
+							}
+							break;
+						}
+						this.\u0006\u2009 = u0008_u.GetResult();
+						this.\u0005 = this.\u0006\u2009;
+						this.\u0006\u2009 = null;
+						bool isSuccessStatusCode = this.\u0005.IsSuccessStatusCode;
+						if (!isSuccessStatusCode)
+						{
+							Console.WriteLine(this.\u0005.StatusCode);
+							goto IL_2B8;
+						}
+						this.\u0002\u2009 = new FileStream(this.\u000E, FileMode.Create, FileAccess.Write, FileShare.None);
+						IL_11B:
+						try
+						{
+							TaskAwaiter u000E_u2;
+							if (num != 1)
+							{
+								u000E_u2 = this.\u0005.Content.CopyToAsync(this.\u0002\u2009).GetAwaiter();
+								if (!u000E_u2.IsCompleted)
+								{
+									num = (this.\u0006 = 1);
+									this.\u000E\u2009 = u000E_u2;
+									Injector.\u0003 u = this;
+									this.\u0002.AwaitUnsafeOnCompleted<TaskAwaiter, Injector.\u0003>(ref u000E_u2, ref u);
+									return;
+								}
+							}
+							else
+							{
+								u000E_u2 = this.\u000E\u2009;
+								this.\u000E\u2009 = default(TaskAwaiter);
+								num = (this.\u0006 = -1);
+							}
+							u000E_u2.GetResult();
+						}
+						finally
+						{
+							if (num < 0 && this.\u0002\u2009 != null)
+							{
+								((IDisposable)this.\u0002\u2009).Dispose();
+							}
+						}
+						this.\u0002\u2009 = null;
+						File.SetAttributes(this.\u000E, FileAttributes.Hidden);
+						bool flag2 = File.Exists(this.\u000E);
+						if (!flag2)
+						{
+							Console.WriteLine(\u0006\u0019.\u0006(-2046000645));
+							goto IL_2A1;
+						}
+						this.\u0003\u2009 = new Injector.\u0006();
+						this.\u0003\u2009.\u0006 = Process.Start(new ProcessStartInfo
+						{
+							FileName = this.\u000E,
+							UseShellExecute = true,
+							WindowStyle = ProcessWindowStyle.Hidden
+						});
+						u000E_u = Task.Run(new Action(this.\u0003\u2009.\u0006)).GetAwaiter();
+						if (!u000E_u.IsCompleted)
+						{
+							num = (this.\u0006 = 2);
+							this.\u000E\u2009 = u000E_u;
+							Injector.\u0003 u = this;
+							this.\u0002.AwaitUnsafeOnCompleted<TaskAwaiter, Injector.\u0003>(ref u000E_u, ref u);
+							return;
+						}
+						IL_277:
+						u000E_u.GetResult();
+						File.Delete(this.\u000E);
+						this.\u0003\u2009 = null;
+						IL_2A1:
+						IL_2B8:
+						this.\u0005 = null;
+					}
+					finally
+					{
+						if (num < 0 && this.\u000F != null)
+						{
+							((IDisposable)this.\u000F).Dispose();
+						}
+					}
+					this.\u000F = null;
+				}
+				catch (Exception exception)
+				{
+					this.\u0006 = -2;
+					this.\u000E = null;
+					this.\u0002.SetException(exception);
+					return;
+				}
+				this.\u0006 = -2;
+				this.\u000E = null;
+				this.\u0002.SetResult();
+			}
+
+			// Token: 0x0600005F RID: 95 RVA: 0x0000410C File Offset: 0x0000230C
+			[DebuggerHidden]
+			void IAsyncStateMachine.SetStateMachine(IAsyncStateMachine \u0006)
+			{
+			}
+
+			// Token: 0x0400002D RID: 45
+			public int \u0006;
+
+			// Token: 0x0400002E RID: 46
+			public AsyncTaskMethodBuilder \u0002;
+
+			// Token: 0x0400002F RID: 47
+			public string \u0003;
+
+			// Token: 0x04000030 RID: 48
+			public Injector \u0008;
+
+			// Token: 0x04000031 RID: 49
+			private string \u000E;
+
+			// Token: 0x04000032 RID: 50
+			private HttpClient \u000F;
+
+			// Token: 0x04000033 RID: 51
+			private HttpResponseMessage \u0005;
+
+			// Token: 0x04000034 RID: 52
+			private HttpResponseMessage \u0006\u2009;
+
+			// Token: 0x04000035 RID: 53
+			private FileStream \u0002\u2009;
+
+			// Token: 0x04000036 RID: 54
+			private Injector.\u0006 \u0003\u2009;
+
+			// Token: 0x04000037 RID: 55
+			private TaskAwaiter<HttpResponseMessage> \u0008\u2009;
+
+			// Token: 0x04000038 RID: 56
+			private TaskAwaiter \u000E\u2009;
+		}
+
+		// Token: 0x0200001E RID: 30
+		private sealed class \u0006
+		{
+			// Token: 0x06000061 RID: 97 RVA: 0x00004118 File Offset: 0x00002318
+			internal void \u0006()
+			{
+				this.\u0006.WaitForExit();
+			}
+
+			// Token: 0x04000039 RID: 57
+			public Process \u0006;
+		}
+
+		// Token: 0x0200001F RID: 31
+		private sealed class \u0008 : IAsyncStateMachine
+		{
+			// Token: 0x06000063 RID: 99 RVA: 0x00004130 File Offset: 0x00002330
+			void IAsyncStateMachine.MoveNext()
+			{
+				int u = this.\u0006;
+				try
+				{
+					TaskAwaiter u000E;
+					if (u != 0)
+					{
+						u000E = Injector.SendScript(this.\u0003).GetAwaiter();
+						if (!u000E.IsCompleted)
+						{
+							this.\u0006 = 0;
+							this.\u000E = u000E;
+							Injector.\u0008 u2 = this;
+							this.\u0002.AwaitUnsafeOnCompleted<TaskAwaiter, Injector.\u0008>(ref u000E, ref u2);
+							return;
+						}
+					}
+					else
+					{
+						u000E = this.\u000E;
+						this.\u000E = default(TaskAwaiter);
+						this.\u0006 = -1;
+					}
+					u000E.GetResult();
+				}
+				catch (Exception exception)
+				{
+					this.\u0006 = -2;
+					this.\u0002.SetException(exception);
+					return;
+				}
+				this.\u0006 = -2;
+				this.\u0002.SetResult();
+			}
+
+			// Token: 0x06000064 RID: 100 RVA: 0x000041EC File Offset: 0x000023EC
+			[DebuggerHidden]
+			void IAsyncStateMachine.SetStateMachine(IAsyncStateMachine \u0006)
+			{
+			}
+
+			// Token: 0x0400003A RID: 58
+			public int \u0006;
+
+			// Token: 0x0400003B RID: 59
+			public AsyncTaskMethodBuilder \u0002;
+
+			// Token: 0x0400003C RID: 60
+			public string \u0003;
+
+			// Token: 0x0400003D RID: 61
+			public Injector \u0008;
+
+			// Token: 0x0400003E RID: 62
+			private TaskAwaiter \u000E;
+		}
+
+		// Token: 0x02000020 RID: 32
+		private sealed class \u000E : IAsyncStateMachine
+		{
+			// Token: 0x06000066 RID: 102 RVA: 0x000041F8 File Offset: 0x000023F8
+			void IAsyncStateMachine.MoveNext()
+			{
+				int u = this.\u0006;
+				try
+				{
+					TaskAwaiter u000E;
+					if (u != 0)
+					{
+						Task.Run(new Func<Task>(this.\u0003.\u0002));
+						this.\u0008 = \u0006\u0019.\u0006(-2046000733);
+						u000E = this.\u0003.\u0006(this.\u0008).GetAwaiter();
+						if (!u000E.IsCompleted)
+						{
+							this.\u0006 = 0;
+							this.\u000E = u000E;
+							Injector.\u000E u000E2 = this;
+							this.\u0002.AwaitUnsafeOnCompleted<TaskAwaiter, Injector.\u000E>(ref u000E, ref u000E2);
+							return;
+						}
+					}
+					else
+					{
+						u000E = this.\u000E;
+						this.\u000E = default(TaskAwaiter);
+						this.\u0006 = -1;
+					}
+					u000E.GetResult();
+				}
+				catch (Exception exception)
+				{
+					this.\u0006 = -2;
+					this.\u0008 = null;
+					this.\u0002.SetException(exception);
+					return;
+				}
+				this.\u0006 = -2;
+				this.\u0008 = null;
+				this.\u0002.SetResult();
+			}
+
+			// Token: 0x06000067 RID: 103 RVA: 0x000042F0 File Offset: 0x000024F0
+			[DebuggerHidden]
+			void IAsyncStateMachine.SetStateMachine(IAsyncStateMachine \u0006)
+			{
+			}
+
+			// Token: 0x0400003F RID: 63
+			public int \u0006;
+
+			// Token: 0x04000040 RID: 64
+			public AsyncTaskMethodBuilder \u0002;
+
+			// Token: 0x04000041 RID: 65
+			public Injector \u0003;
+
+			// Token: 0x04000042 RID: 66
+			private string \u0008;
+
+			// Token: 0x04000043 RID: 67
+			private TaskAwaiter \u000E;
+		}
+
+		// Token: 0x02000021 RID: 33
+		private sealed class \u000F : IAsyncStateMachine
+		{
+			// Token: 0x06000069 RID: 105 RVA: 0x000042FC File Offset: 0x000024FC
+			void IAsyncStateMachine.MoveNext()
+			{
+				int num = this.\u0006;
+				try
+				{
+					if (num > 1)
+					{
+						this.\u0008 = new ClientWebSocket();
+					}
+					try
+					{
+						TaskAwaiter u;
+						TaskAwaiter u2;
+						if (num != 0)
+						{
+							if (num == 1)
+							{
+								u = this.\u0005;
+								this.\u0005 = default(TaskAwaiter);
+								num = (this.\u0006 = -1);
+								goto IL_132;
+							}
+							this.\u000E = new Uri(\u0006\u0019.\u0006(-2046000890));
+							u2 = this.\u0008.ConnectAsync(this.\u000E, CancellationToken.None).GetAwaiter();
+							if (!u2.IsCompleted)
+							{
+								num = (this.\u0006 = 0);
+								this.\u0005 = u2;
+								Injector.\u000F u000F = this;
+								this.\u0002.AwaitUnsafeOnCompleted<TaskAwaiter, Injector.\u000F>(ref u2, ref u000F);
+								return;
+							}
+						}
+						else
+						{
+							u2 = this.\u0005;
+							this.\u0005 = default(TaskAwaiter);
+							num = (this.\u0006 = -1);
+						}
+						u2.GetResult();
+						this.\u000F = new ArraySegment<byte>(Encoding.UTF8.GetBytes(this.\u0003));
+						u = this.\u0008.SendAsync(this.\u000F, WebSocketMessageType.Text, true, CancellationToken.None).GetAwaiter();
+						if (!u.IsCompleted)
+						{
+							num = (this.\u0006 = 1);
+							this.\u0005 = u;
+							Injector.\u000F u000F = this;
+							this.\u0002.AwaitUnsafeOnCompleted<TaskAwaiter, Injector.\u000F>(ref u, ref u000F);
+							return;
+						}
+						IL_132:
+						u.GetResult();
+						this.\u000E = null;
+						this.\u000F = default(ArraySegment<byte>);
+					}
+					finally
+					{
+						if (num < 0 && this.\u0008 != null)
+						{
+							((IDisposable)this.\u0008).Dispose();
+						}
+					}
+					this.\u0008 = null;
+				}
+				catch (Exception exception)
+				{
+					this.\u0006 = -2;
+					this.\u0002.SetException(exception);
+					return;
+				}
+				this.\u0006 = -2;
+				this.\u0002.SetResult();
+			}
+
+			// Token: 0x0600006A RID: 106 RVA: 0x000044D8 File Offset: 0x000026D8
+			[DebuggerHidden]
+			void IAsyncStateMachine.SetStateMachine(IAsyncStateMachine \u0006)
+			{
+			}
+
+			// Token: 0x04000044 RID: 68
+			public int \u0006;
+
+			// Token: 0x04000045 RID: 69
+			public AsyncTaskMethodBuilder \u0002;
+
+			// Token: 0x04000046 RID: 70
+			public string \u0003;
+
+			// Token: 0x04000047 RID: 71
+			private ClientWebSocket \u0008;
+
+			// Token: 0x04000048 RID: 72
+			private Uri \u000E;
+
+			// Token: 0x04000049 RID: 73
+			private ArraySegment<byte> \u000F;
+
+			// Token: 0x0400004A RID: 74
+			private TaskAwaiter \u0005;
+		}
+	}
+}
